@@ -36,7 +36,7 @@ public interface TransactionRepository extends MongoRepository<Transaction, Stri
     })
     List<Map<String, Object>> getExpenseTrends(String userId);
     @Aggregation(pipeline = {
-            "{ $match: { userId: ?0 } }",  // ✅ Match transactions for a specific user
+            "{ $match: { userId: ?0 } }",
             "{ $group: { " +
                     "_id: { month: { $month: '$date' }, year: { $year: '$date' } }, " +
                     "totalIncome: { $sum: { $cond: { if: { $eq: ['$type', 'INCOME'] }, then: { $toDouble: '$amount' }, else: 0 } } }, " +

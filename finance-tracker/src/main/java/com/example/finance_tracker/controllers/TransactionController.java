@@ -32,8 +32,6 @@ public class TransactionController {
         Transaction savedTransaction = transactionService.createTransaction(transaction, targetCurrency);
         return ResponseEntity.ok(savedTransaction);
     }
-
-
     @GetMapping("/{userId}")
     public ResponseEntity<Page<Transaction>> getUserTransactions(
             @PathVariable String userId,
@@ -44,12 +42,10 @@ public class TransactionController {
             Pageable pageable) {
         return ResponseEntity.ok(transactionService.getByUserIdAndFilters(userId, category, type, startDate, endDate, pageable));
     }
-
     @GetMapping("/transaction/{id}")
     public ResponseEntity<Optional<Transaction>> getTransactionById(@PathVariable String id) {
         return ResponseEntity.ok(transactionService.getTransactionById(id));
     }
-
     @PutMapping("/{id}")
     public ResponseEntity<Transaction> updateTransaction(@PathVariable String id, @RequestBody Transaction transaction) {
         return ResponseEntity.ok(transactionService.updateTransaction(id, transaction));
@@ -75,13 +71,10 @@ public class TransactionController {
     public ResponseEntity<List<Map<String, Object>>> getIncomeVsExpenseTrends(@PathVariable String userId) {
         return ResponseEntity.ok(transactionService.getIncomeVsExpenseTrends(userId));
     }
-    // 🔥 Get Recurring Transactions for a User
-
     @GetMapping("/recurring/{userId}")
     public ResponseEntity<List<Transaction>> getRecurringTransactions(@PathVariable String userId) {
         return ResponseEntity.ok(transactionService.getRecurringTransactions(userId));
     }
-
     @PutMapping("/recurring/{id}/stop")
     public ResponseEntity<String> stopRecurringTransaction(@PathVariable String id) {
         transactionService.stopRecurringTransaction(id);

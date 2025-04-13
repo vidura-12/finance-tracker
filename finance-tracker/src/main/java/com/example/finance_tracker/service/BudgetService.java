@@ -15,7 +15,6 @@ import java.time.YearMonth;
 import java.util.*;
 
 @Service
-
 public class BudgetService {
     private final BudgetRepository budgetRepository;
     private final TransactionRepository transactionRepository;
